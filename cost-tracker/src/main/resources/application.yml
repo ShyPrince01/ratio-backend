@@ -5,9 +5,13 @@ spring:
   application:
     name: cost-tracker
   datasource:
-    url: ${DATABASE_URL:jdbc:h2:mem:costdb}
-    username: ${DATABASE_USER:sa}
-    password: ${DATABASE_PASSWORD:}
+    url: ${DATABASE_URL}
+    username: ${DATABASE_USER}
+    password: ${DATABASE_PASSWORD}
+    driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
       ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect

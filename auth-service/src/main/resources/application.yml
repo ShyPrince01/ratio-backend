@@ -5,12 +5,16 @@ spring:
   application:
     name: auth-service
   datasource:
-    url: ${DATABASE_URL:jdbc:h2:mem:authdb}
-    username: ${DATABASE_USER:sa}
-    password: ${DATABASE_PASSWORD:}
+    url: ${DATABASE_URL}
+    username: ${DATABASE_USER}
+    password: ${DATABASE_PASSWORD}
+    driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
       ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
 
 app:
   jwt:
