@@ -1,0 +1,18 @@
+server:
+  port: 8084
+
+spring:
+  application:
+    name: auth-service
+  datasource:
+    url: ${DATABASE_URL:jdbc:h2:mem:authdb}
+    username: ${DATABASE_USER:sa}
+    password: ${DATABASE_PASSWORD:}
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+app:
+  jwt:
+    secret: ratio-secret-key-must-be-at-least-256-bits-long-for-hs256
+    expiration: 86400000

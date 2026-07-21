@@ -1,0 +1,8 @@
+C:\Users\Bamidele\Desktop\ratio-backend\auth-service\src\main\java\com\ratio\auth\AuthServiceApplication.java
+C:\Users\Bamidele\Desktop\ratio-backend\auth-service\src\main\java\com\ratio\auth\controller\AuthController.java
+C:\Users\Bamidele\Desktop\ratio-backend\auth-service\src\main\java\com\ratio\auth\dto\LoginRequest.java
+C:\Users\Bamidele\Desktop\ratio-backend\auth-service\src\main\java\com\ratio\auth\dto\SignupRequest.java
+C:\Users\Bamidele\Desktop\ratio-backend\auth-service\src\main\java\com\ratio\auth\model\User.java
+C:\Users\Bamidele\Desktop\ratio-backend\auth-service\src\main\java\com\ratio\auth\repository\UserRepository.java
+C:\Users\Bamidele\Desktop\ratio-backend\auth-service\src\main\java\com\ratio\auth\security\JwtUtil.java
+C:\Users\Bamidele\Desktop\ratio-backend\auth-service\src\main\java\com\ratio\auth\security\SecurityConfig.java

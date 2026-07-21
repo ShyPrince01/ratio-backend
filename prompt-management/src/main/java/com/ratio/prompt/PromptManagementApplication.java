@@ -1,11 +1,11 @@
-package com.ratio.engine;
+package com.ratio.prompt;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ExecutionEngineApplication {
+public class PromptManagementApplication {
     public static void main(String[] args) {
-        SpringApplication.run(ExecutionEngineApplication.class, args);
+        SpringApplication.run(PromptManagementApplication.class, args);
     }
 }

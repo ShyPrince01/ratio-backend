@@ -1,11 +1,11 @@
-package com.ratio.engine;
+package com.ratio.auth;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ExecutionEngineApplication {
+public class AuthServiceApplication {
     public static void main(String[] args) {
-        SpringApplication.run(ExecutionEngineApplication.class, args);
+        SpringApplication.run(AuthServiceApplication.class, args);
     }
 }

@@ -1,0 +1,13 @@
+server:
+  port: 8083
+
+spring:
+  application:
+    name: cost-tracker
+  datasource:
+    url: ${DATABASE_URL:jdbc:h2:mem:costdb}
+    username: ${DATABASE_USER:sa}
+    password: ${DATABASE_PASSWORD:}
+  jpa:
+    hibernate:
+      ddl-auto: update

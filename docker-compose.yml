@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  # API Gateway - Routes all traffic
+  api-gateway:
+    build: ./api-gateway
+    ports:
+      - "8080:8080"
+    depends_on:
+      - prompt-management
+      - execution-engine
+      - cost-tracker
+    environment:
+      - PROMPT_MANAGEMENT_URL=http://prompt-management:8081
+      - EXECUTION_ENGINE_URL=http://execution-engine:8082
+      - COST_TRACKER_URL=http://cost-tracker:8083
+
+  # Prompt Management Service
+  prompt-management:
+    build: ./prompt-management
+    ports:
+      - "8081:8081"
+
+  # Execution Engine
+  execution-engine:
+    build: ./execution-engine
+    ports:
+      - "8082:8082"
+    environment:
+      - COST_TRACKER_URL=http://cost-tracker:8083
+
+  # Cost Tracker
+  cost-tracker:
+    build: ./cost-tracker
+    ports:
+      - "8083:8083"
+
+  auth-service:
+    build: ./auth-service
+    ports:
+      - "8084:8084"

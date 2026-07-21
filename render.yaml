@@ -1,0 +1,60 @@
+services:
+  - type: web
+    name: ratio-gateway
+    env: docker
+    rootDir: api-gateway
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: PROMPT_MANAGEMENT_URL
+        fromService: { name: ratio-prompt-management, type: web, property: hostport }
+      - key: EXECUTION_ENGINE_URL
+        fromService: { name: ratio-execution-engine, type: web, property: hostport }
+      - key: COST_TRACKER_URL
+        fromService: { name: ratio-cost-tracker, type: web, property: hostport }
+      - key: AUTH_SERVICE_URL
+        fromService: { name: ratio-auth-service, type: web, property: hostport }
+
+  - type: web
+    name: ratio-prompt-management
+    env: docker
+    rootDir: prompt-management
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: DATABASE_URL
+        value: jdbc:postgresql://db.sevxqiufetmuqghfojxk.supabase.co:5432/postgres
+      - key: DATABASE_USER
+        value: postgres
+      - key: DATABASE_PASSWORD
+        value: GloriousJohn231@
+
+  - type: web
+    name: ratio-execution-engine
+    env: docker
+    rootDir: execution-engine
+    dockerfilePath: ./Dockerfile
+
+  - type: web
+    name: ratio-cost-tracker
+    env: docker
+    rootDir: cost-tracker
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: DATABASE_URL
+        value: jdbc:postgresql://db.sevxqiufetmuqghfojxk.supabase.co:5432/postgres
+      - key: DATABASE_USER
+        value: postgres
+      - key: DATABASE_PASSWORD
+        value: GloriousJohn231@
+
+  - type: web
+    name: ratio-auth-service
+    env: docker
+    rootDir: auth-service
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: DATABASE_URL
+        value: jdbc:postgresql://db.sevxqiufetmuqghfojxk.supabase.co:5432/postgres
+      - key: DATABASE_USER
+        value: postgres
+      - key: DATABASE_PASSWORD
+        value: GloriousJohn231@
