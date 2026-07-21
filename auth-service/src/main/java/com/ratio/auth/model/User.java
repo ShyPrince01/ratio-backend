@@ -21,6 +21,9 @@ public class User {
     private String company;
     private String teamSize;
 
+    private String verificationCode;
+    private boolean verified = false;
+
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
 
@@ -45,4 +48,9 @@ public class User {
     public String getTeamSize() { return teamSize; }
     public void setTeamSize(String teamSize) { this.teamSize = teamSize; }
     public LocalDateTime getCreatedAt() { return createdAt; }
-}
+
+
+public String getVerificationCode() { return verificationCode; }
+public void setVerificationCode(String verificationCode) { this.verificationCode = verificationCode; }
+public boolean isVerified() { return verified; }
+public void setVerified(boolean verified) { this.verified = verified; }
