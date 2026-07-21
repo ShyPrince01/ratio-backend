@@ -6,7 +6,9 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "users")
 public class User {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
@@ -20,16 +22,19 @@ public class User {
 
     private String company;
     private String teamSize;
-
     private String verificationCode;
     private boolean verified = false;
 
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
 
-    @PrePersist protected void onCreate() { createdAt = LocalDateTime.now(); }
+    @PrePerset
+    protected void onCreate() {
+        createdAt = LocalDateTime.now();
+    }
 
     public User() {}
+
     public User(String fullName, String email, String password) {
         this.fullName = fullName;
         this.email = email;
@@ -37,6 +42,7 @@ public class User {
     }
 
     public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
     public String getFullName() { return fullName; }
     public void setFullName(String fullName) { this.fullName = fullName; }
     public String getEmail() { return email; }
@@ -47,10 +53,9 @@ public class User {
     public void setCompany(String company) { this.company = company; }
     public String getTeamSize() { return teamSize; }
     public void setTeamSize(String teamSize) { this.teamSize = teamSize; }
+    public String getVerificationCode() { return verificationCode; }
+    public void setVerificationCode(String verificationCode) { this.verificationCode = verificationCode; }
+    public boolean isVerified() { return verified; }
+    public void setVerified(boolean verified) { this.verified = verified; }
     public LocalDateTime getCreatedAt() { return createdAt; }
-
-
-public String getVerificationCode() { return verificationCode; }
-public void setVerificationCode(String verificationCode) { this.verificationCode = verificationCode; }
-public boolean isVerified() { return verified; }
-public void setVerified(boolean verified) { this.verified = verified; }
+}
