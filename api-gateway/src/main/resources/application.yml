@@ -1,20 +1,25 @@
+server:
+  port: 8080
+
 spring:
+  application:
+    name: api-gateway
   cloud:
     gateway:
       routes:
         - id: prompt-management
-          uri: ${PROMPT_MANAGEMENT_URL}
+          uri: http://localhost:8081
           predicates:
             - Path=/api/prompts/**
         - id: execution-engine
-          uri: ${EXECUTION_ENGINE_URL}
+          uri: http://localhost:8082
           predicates:
             - Path=/api/execute/**
         - id: cost-tracker
-          uri: ${COST_TRACKER_URL}
+          uri: http://localhost:8083
           predicates:
             - Path=/api/cost/**
         - id: auth-service
-          uri: ${AUTH_SERVICE_URL}
+          uri: http://localhost:8084
           predicates:
             - Path=/api/auth/**
