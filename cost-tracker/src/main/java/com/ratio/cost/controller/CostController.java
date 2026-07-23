@@ -14,7 +14,6 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/cost")
-@CrossOrigin(origins = "*")
 public class CostController {
 
     private final UsageLogRepository repository;

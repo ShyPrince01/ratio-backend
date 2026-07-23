@@ -13,7 +13,6 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/prompts")
-@CrossOrigin(origins = "*") // For development; tighten in production
 public class PromptController {
     
     private final PromptRepository promptRepository;

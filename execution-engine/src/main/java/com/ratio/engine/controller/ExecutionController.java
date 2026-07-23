@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/execute")
-@CrossOrigin(origins = "*")
 public class ExecutionController {
     
     private final MockLLMService llmService;
