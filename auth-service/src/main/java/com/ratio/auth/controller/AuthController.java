@@ -17,7 +17,6 @@ import java.util.Random;
 
 @RestController
 @RequestMapping("/api/auth")
-@CrossOrigin(origins = "*")
 public class AuthController {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
@@ -46,7 +45,7 @@ public class AuthController {
 
         return ResponseEntity.ok(Map.of(
                 "email", user.getEmail(),
-                "verificationCode", code,  // Return code so frontend can send via EmailJS
+                "verificationCode", code,
                 "message", "Verification code generated"
         ));
     }
