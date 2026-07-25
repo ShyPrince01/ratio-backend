@@ -119,6 +119,7 @@ public class AuthController {
             return ResponseEntity.badRequest().body(Map.of("error", "Invalid reset code"));
         user.setPassword(passwordEncoder.encode(request.get("newPassword")));
         user.setVerificationCode(null);
+        user.setVerified(true);
         userRepository.save(user);
         return ResponseEntity.ok(Map.of("message", "Password reset successfully"));
     }
