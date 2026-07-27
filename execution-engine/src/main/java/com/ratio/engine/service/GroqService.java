@@ -26,7 +26,7 @@ public class GroqService {
     private final RestTemplate restTemplate = new RestTemplate();
     private final ObjectMapper mapper = new ObjectMapper();
 
-    public ExecutionResponse generateResponse(String prompt, String userModel, int maxTokens) {
+    public ExecutionResponse generateResponse(String prompt, String userModel, int maxTokens, double temperature) {
         String selectedModel = userModel != null ? mapModel(userModel) : model;
 
         log.error("=== Groq Debug ===");
@@ -44,7 +44,7 @@ public class GroqService {
             messages.add(msg);
             body.put("messages", messages);
             body.put("max_tokens", maxTokens);
-            body.put("temperature", 0.7);
+            body.put("temperature", temperature);
 
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON);

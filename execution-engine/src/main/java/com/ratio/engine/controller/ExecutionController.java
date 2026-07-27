@@ -31,8 +31,9 @@ public class ExecutionController {
 
         String model = request.getModel() != null ? request.getModel() : "gpt-4o";
         int maxTokens = request.getMaxTokens() != null ? request.getMaxTokens() : 500;
+        double temperature = request.getTemperature() != null ? request.getTemperature() : 0.7;
 
-        ExecutionResponse response = groqService.generateResponse(promptContent, model, maxTokens);
+        ExecutionResponse response = groqService.generateResponse(promptContent, model, maxTokens, temperature);
 
         costTrackerClient.trackUsage(
                 request.getPromptId(),
