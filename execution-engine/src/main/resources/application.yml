@@ -7,7 +7,7 @@ spring:
 
 services:
   cost-tracker:
-    url: http://localhost:8083
+    url: ${COST_TRACKER_URL}
 
 groq:
   api:
