@@ -3,6 +3,8 @@ package com.ratio.engine.service;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ratio.engine.dto.ExecutionResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
@@ -12,6 +14,8 @@ import java.util.*;
 
 @Service
 public class GroqService {
+
+    private static final Logger log = LoggerFactory.getLogger(GroqService.class);
 
     @Value("${groq.api.key:}")
     private String apiKey;
@@ -25,10 +29,10 @@ public class GroqService {
     public ExecutionResponse generateResponse(String prompt, String userModel, int maxTokens) {
         String selectedModel = userModel != null ? mapModel(userModel) : model;
 
-        System.err.println("=== Groq Debug ===");
-        System.err.println("API Key present: " + (apiKey != null && !apiKey.isEmpty()));
-        System.err.println("API Key starts with: " + (apiKey != null && apiKey.length() > 4 ? apiKey.substring(0, 4) + "..." : "empty"));
-        System.err.println("Model: " + selectedModel);
+        log.error("=== Groq Debug ===");
+        log.error("API Key present: {}", (apiKey != null && !apiKey.isEmpty()));
+        log.error("API Key starts with: {}", (apiKey != null && apiKey.length() > 4 ? apiKey.substring(0, 4) + "..." : "empty"));
+        log.error("Model: {}", selectedModel);
 
         try {
             Map<String, Object> body = new HashMap<>();
@@ -59,15 +63,14 @@ public class GroqService {
             int promptTokens = root.path("usage").path("prompt_tokens").asInt();
             int completionTokens = root.path("usage").path("completion_tokens").asInt();
 
-            System.err.println("=== Groq Success ===");
-            System.err.println("Response: " + content.substring(0, Math.min(100, content.length())) + "...");
+            log.error("=== Groq Success ===");
 
             ExecutionResponse.UsageInfo usage = new ExecutionResponse.UsageInfo(promptTokens, completionTokens);
             return new ExecutionResponse(content, selectedModel, usage);
 
         } catch (Exception e) {
-            System.err.println("=== Groq Error ===");
-            System.err.println("Error: " + e.getMessage());
+            log.error("=== Groq Error ===");
+            log.error("Error: {}", e.getMessage());
             e.printStackTrace();
             MockLLMService mock = new MockLLMService();
             return mock.generateResponse(prompt, selectedModel, maxTokens);
