@@ -78,10 +78,10 @@ public class GroqService {
 
     private String mapModel(String model) {
         return switch (model) {
-            case "gpt-4o" -> "llama3-70b-8192";
-            case "gpt-4o-mini" -> "llama3-8b-8192";
-            case "gpt-3.5-turbo" -> "llama3-8b-8192";
-            default -> "llama3-8b-8192";
+            case "gpt-4o" -> "llama-3.3-70b-versatile";
+            case "gpt-4o-mini" -> "llama-3.1-8b-instant";
+            case "gpt-3.5-turbo" -> "llama-3.1-8b-instant";
+            default -> "llama-3.1-8b-instant";
         };
     }
 }
