@@ -8,3 +8,8 @@ spring:
 services:
   cost-tracker:
     url: http://localhost:8083
+
+groq:
+  api:
+    key: ${GROQ_API_KEY:}
+  model: ${GROQ_MODEL:llama3-8b-8192}
