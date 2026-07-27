@@ -25,10 +25,10 @@ public class GroqService {
     public ExecutionResponse generateResponse(String prompt, String userModel, int maxTokens) {
         String selectedModel = userModel != null ? mapModel(userModel) : model;
 
-        System.out.println("=== Groq Debug ===");
-        System.out.println("API Key present: " + (apiKey != null && !apiKey.isEmpty()));
-        System.out.println("API Key starts with: " + (apiKey != null && apiKey.length() > 4 ? apiKey.substring(0, 4) + "..." : "empty"));
-        System.out.println("Model: " + selectedModel);
+        System.err.println("=== Groq Debug ===");
+        System.err.println("API Key present: " + (apiKey != null && !apiKey.isEmpty()));
+        System.err.println("API Key starts with: " + (apiKey != null && apiKey.length() > 4 ? apiKey.substring(0, 4) + "..." : "empty"));
+        System.err.println("Model: " + selectedModel);
 
         try {
             Map<String, Object> body = new HashMap<>();
@@ -59,17 +59,16 @@ public class GroqService {
             int promptTokens = root.path("usage").path("prompt_tokens").asInt();
             int completionTokens = root.path("usage").path("completion_tokens").asInt();
 
-            System.out.println("=== Groq Success ===");
-            System.out.println("Response: " + content.substring(0, Math.min(100, content.length())) + "...");
+            System.err.println("=== Groq Success ===");
+            System.err.println("Response: " + content.substring(0, Math.min(100, content.length())) + "...");
 
             ExecutionResponse.UsageInfo usage = new ExecutionResponse.UsageInfo(promptTokens, completionTokens);
             return new ExecutionResponse(content, selectedModel, usage);
 
         } catch (Exception e) {
-            System.out.println("=== Groq Error ===");
-            System.out.println("Error: " + e.getMessage());
+            System.err.println("=== Groq Error ===");
+            System.err.println("Error: " + e.getMessage());
             e.printStackTrace();
-            // Fallback to mock
             MockLLMService mock = new MockLLMService();
             return mock.generateResponse(prompt, selectedModel, maxTokens);
         }
