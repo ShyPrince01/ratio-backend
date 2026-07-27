@@ -39,11 +39,11 @@ public class CostTrackerClient {
             body.put("totalTokens", totalTokens);
             
             HttpEntity<Map<String, Object>> request = new HttpEntity<>(body, headers);
-            
+
             restTemplate.postForEntity(
-                costTrackerUrl + "/track", 
-                request, 
-                String.class
+                    costTrackerUrl + "/api/cost/track",
+                    request,
+                    String.class
             );
             
             log.info("Successfully tracked usage for prompt: {}", promptId);
