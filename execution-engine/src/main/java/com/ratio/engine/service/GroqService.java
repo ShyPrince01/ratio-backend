@@ -72,8 +72,7 @@ public class GroqService {
             log.error("=== Groq Error ===");
             log.error("Error: {}", e.getMessage());
             e.printStackTrace();
-            MockLLMService mock = new MockLLMService();
-            return mock.generateResponse(prompt, selectedModel, maxTokens);
+            throw new RuntimeException("Groq API failed: " + e.getMessage(), e);
         }
     }
 
