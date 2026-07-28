@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: execution-engine
-          image: ratio/execution-engine:latest
+          image: john0553/execution-engine:latest
           ports:
             - containerPort: 8082
           env:

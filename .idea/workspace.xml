@@ -5,11 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2dc6ed73-4754-4067-9da6-c6c65394ebda" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.github/workflows/ci-cd.yml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/K8s/api-gateway.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/K8s/api-gateway.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/K8s/ingress.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/K8s/ingress.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/K8s/namespace.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/K8s/namespace.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/K8s/secrets.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/K8s/secrets.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/K8s/auth-service.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/K8s/auth-service.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/K8s/cost-tracker.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/K8s/cost-tracker.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/K8s/execution-engine.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/K8s/execution-engine.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/K8s/frontend.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/K8s/frontend.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/K8s/prompt-management.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/K8s/prompt-management.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

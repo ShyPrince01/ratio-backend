@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: ratio/frontend:latest
+          image: john0553/frontend:latest
           ports:
             - containerPort: 3000
           env:

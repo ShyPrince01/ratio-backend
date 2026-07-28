@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: cost-tracker
-          image: ratio/cost-tracker:latest
+          image: john0553/cost-tracker:latest
           ports:
             - containerPort: 8083
           env:
