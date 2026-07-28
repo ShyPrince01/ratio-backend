@@ -8,34 +8,43 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: ratio.local
-    http:
-      paths:
-      - path: /api/prompts
-        pathType: Prefix
-        backend:
-          service:
-            name: prompt-management-service
-            port:
-              number: 8081
-      - path: /api/execute
-        pathType: Prefix
-        backend:
-          service:
-            name: execution-engine-service
-            port:
-              number: 8082
-      - path: /api/cost
-        pathType: Prefix
-        backend:
-          service:
-            name: cost-tracker-service
-            port:
-              number: 8083
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: frontend-service
-            port:
-              number: 3000
+    - host: ratio.local
+      http:
+        paths:
+          # Frontend
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: frontend-service
+                port:
+                  number: 3000
+          # API routes
+          - path: /api/prompts
+            pathType: Prefix
+            backend:
+              service:
+                name: prompt-management-service
+                port:
+                  number: 8081
+          - path: /api/execute
+            pathType: Prefix
+            backend:
+              service:
+                name: execution-engine-service
+                port:
+                  number: 8082
+          - path: /api/cost
+            pathType: Prefix
+            backend:
+              service:
+                name: cost-tracker-service
+                port:
+                  number: 8083
+          - path: /api/auth
+            pathType: Prefix
+            backend:
+              service:
+                name: auth-service-service
+                port:
+                  number: 8084
