@@ -1,0 +1,62 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prompt-management
+  namespace: ratio
+  labels:
+    app: prompt-management
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: prompt-management
+  template:
+    metadata:
+      labels:
+        app: prompt-management
+    spec:
+      containers:
+        - name: prompt-management
+          image: ratio/prompt-management:latest
+          ports:
+            - containerPort: 8081
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: ratio-db-secret
+                  key: url
+            - name: DATABASE_USER
+              valueFrom:
+                secretKeyRef:
+                  name: ratio-db-secret
+                  key: username
+            - name: DATABASE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: ratio-db-secret
+                  key: password
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: prompt-management-service
+  namespace: ratio
+  labels:
+    app: prompt-management
+spec:
+  selector:
+    app: prompt-management
+  ports:
+    - port: 8081
+      targetPort: 8081
+      protocol: TCP
+  type: ClusterIP

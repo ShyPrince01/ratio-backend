@@ -1,0 +1,54 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: execution-engine
+  namespace: ratio
+  labels:
+    app: execution-engine
+spec:
+  replicas: 2  # More replicas for this CPU-intensive service
+  selector:
+    matchLabels:
+      app: execution-engine
+  template:
+    metadata:
+      labels:
+        app: execution-engine
+    spec:
+      containers:
+        - name: execution-engine
+          image: ratio/execution-engine:latest
+          ports:
+            - containerPort: 8082
+          env:
+            - name: GROQ_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: ratio-groq-secret
+                  key: api-key
+            - name: COST_TRACKER_URL
+              value: "http://cost-tracker-service:8083"
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: execution-engine-service
+  namespace: ratio
+  labels:
+    app: execution-engine
+spec:
+  selector:
+    app: execution-engine
+  ports:
+    - port: 8082
+      targetPort: 8082
+      protocol: TCP
+  type: ClusterIP

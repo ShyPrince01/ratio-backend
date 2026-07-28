@@ -1,0 +1,57 @@
+---
+# Deployment: Runs the API Gateway container
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-gateway
+  namespace: ratio
+  labels:
+    app: api-gateway
+spec:
+  replicas: 2  # Run 2 copies for high availability
+  selector:
+    matchLabels:
+      app: api-gateway
+  template:
+    metadata:
+      labels:
+        app: api-gateway
+    spec:
+      containers:
+        - name: api-gateway
+          image: ratio/api-gateway:latest  # Docker image name
+          ports:
+            - containerPort: 8080
+          env:
+            - name: PROMPT_MANAGEMENT_URL
+              value: "http://prompt-management-service:8081"
+            - name: EXECUTION_ENGINE_URL
+              value: "http://execution-engine-service:8082"
+            - name: COST_TRACKER_URL
+              value: "http://cost-tracker-service:8083"
+            - name: AUTH_SERVICE_URL
+              value: "http://auth-service-service:8084"
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+---
+# Service: Exposes the deployment internally
+apiVersion: v1
+kind: Service
+metadata:
+  name: api-gateway-service
+  namespace: ratio
+  labels:
+    app: api-gateway
+spec:
+  selector:
+    app: api-gateway
+  ports:
+    - port: 8080
+      targetPort: 8080
+      protocol: TCP
+  type: ClusterIP  # Internal only, Ingress handles external traffic
